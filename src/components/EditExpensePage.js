@@ -22,7 +22,7 @@ export class EditExpensePage extends React.Component {
 				<button onClick={this.onRemove}>Remove</button>
 			</div>
 		);
-	};
+	}
 };
 
 const mapStateToProps = (state, props) => ({

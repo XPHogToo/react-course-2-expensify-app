@@ -17,8 +17,8 @@ export class AddExpensePage extends React.Component {
 			  />
 		  </div>
 	);
-	};
-};
+	}
+}
 
 const mapDispatchToProps = (dispatch) => ({
 	addExpense: (expense) => dispatch(addExpense(expense))
