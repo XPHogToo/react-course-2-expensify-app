@@ -63,7 +63,7 @@ export default class ExpenseForm extends React.Component {
 						onChange={this.onDescriptionChange}
 					/>
 					<input
-            type="text"
+						type="text"
 						placeholder="Amount"
 						value={this.state.amount}
 						onChange={this.onAmountChange}
@@ -74,7 +74,7 @@ export default class ExpenseForm extends React.Component {
 						focused={this.state.calendarFocused}
 						onFocusChange={this.onFocusChange}
 						numberOfMonths={1}
-            isOutsideRange={() => false}
+						isOutsideRange={() => false}
 					/>
 					<textarea
 						placeholder="Add a note for your expense (optional)"

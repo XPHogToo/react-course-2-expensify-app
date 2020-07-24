@@ -16,6 +16,7 @@ test('Should render ExpenseForm with expense data', () => {
 
 test('Should render error for invalid form submission', () => {
 	const wrapper = shallow(<ExpenseForm />);
+  expect(wrapper).toMatchSnapshot();
 	wrapper.find('form').simulate('submit', {
 		preventDefault: () => {}
 	});
@@ -35,7 +36,7 @@ test('Should set description on input change', () => {
 test('Should set note on textarea change', () => {
 	const value = 'New note';
 	const wrapper = shallow(<ExpenseForm />);
-	wrapper.find('textarea').at(0).simulate('change', {
+	wrapper.find('textarea').simulate('change', {
 		target: { value }
 	});
 	expect(wrapper.state('note')).toBe(value);
