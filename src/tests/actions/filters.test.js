@@ -33,7 +33,7 @@ test('Should generate set text filter action object', () => {
 });
 
 test('Should generate set text filter action default object', () => {
-	const action = setTextFilter('');
+	const action = setTextFilter();
 	expect(action).toEqual({
 		type: 'SET_TEXT_FILTER',
 		text: ''

@@ -1,7 +1,7 @@
 import selectExpensesTotal from '../../selectors/expenses-total';
 import expenses from '../fixtures/expenses';
 
-test('Should return zeros if no expeses are passed', () => {
+test('Should return zeros if no expenses are passed', () => {
 	const result = selectExpensesTotal([]);
 	expect(result).toBe(0);
 });
