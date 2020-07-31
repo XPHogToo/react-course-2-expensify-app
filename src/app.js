@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { LoginPage } from './components/LoginPage';
 import { startSetExpenses } from './actions/expenses';
 import { login, logout } from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
@@ -23,10 +22,8 @@ const renderApp = () => {
 	if (!hasRendered) {
 		ReactDOM.render(jsx, document.getElementById('app'));
 		hasRendered = true;
-	};
+	}
 };
-
-//ReactDOM.render(<LoginPage />, document.getElementById('app'));
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
