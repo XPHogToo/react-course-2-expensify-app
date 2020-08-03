@@ -13,17 +13,9 @@ import {
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
-const uid = 'ThisIsMyTestUID';
+const uid = 'thisismytestuid';
 const defaultAuthState = { auth: { uid } };
 const createMockStore = configureMockStore([thunk]);
-
-// beforeEach((done) => {
-// 	const expensesData = {};
-// 	expenses.forEach(({ id, description, note, amount, createdAt }) => {
-// 		expensesData[id] = { description, note, amount, createdAt };
-// 	});
-// 	database.ref('expenses').set(expensesData).then(() => done());
-// });
 
 beforeEach((done) => {
 	const expensesData = {};
@@ -32,14 +24,6 @@ beforeEach((done) => {
 	});
 	database.ref(`users/${uid}/expenses`).set(expensesData).then(() => done());
 });
-
-// afterEach((done) => {
-	// 	const expensesData = {};
-	// 	expenses.forEach(({ id, description, note, amount, createdAt }) => {
-	// 		expensesData[id] = { description, note, amount, createdAt };
-	// 	});
-//	database.ref('expenses').remove().then(() => done());
-//	});
 
 test('Should setup remove expense action object', () => {
 	const action = removeExpense({ id: '123abc' });
@@ -53,8 +37,8 @@ test('Should remove expense from firebase', (done) => {
 	const store = createMockStore( defaultAuthState );
 	const id = expenses[2].id;
 	store.dispatch(startRemoveExpense({ id })).then(() => {
-		const action = store.getActions();
-		expect(action[0]).toEqual({
+		const actions = store.getActions();
+		expect(actions[0]).toEqual({
 			type: 'REMOVE_EXPENSE',
 			id
 		});
@@ -76,7 +60,7 @@ test('Should setup edit expense action object', () => {
 	});
 });
 
-test('Should edit expenses from firebase', () => {
+test('Should edit expense from firebase', (done) => {
 	const store = createMockStore( defaultAuthState );
 	const id = expenses[0].id;
 	const updates = { amount: 21045 };
@@ -106,8 +90,8 @@ test('Should add expense to database and store', (done) => {
 	const store = createMockStore( defaultAuthState );
 	const expenseData = {
 		description: 'Mouse',
-		amount: 4999,
-		note: 'Razer Death Adder',
+		amount: 3000,
+		note: 'This one is better',
 		createdAt: 1000
 	};
 	store.dispatch(startAddExpense(expenseData)).then(() => {
@@ -126,7 +110,7 @@ test('Should add expense to database and store', (done) => {
 		});
 });
 
-test('Should add expense with defaults to database and store', () => {
+test('Should add expense with defaults to database and store', (done) => {
 	const store = createMockStore( defaultAuthState );
 	const expenseDefaults = {
 		description : '',
@@ -161,8 +145,8 @@ test('Should setup set expense action object with data', () => {
 test('Should fetch the expenses from firebase', (done) => {
 	const store = createMockStore( defaultAuthState );
 	store.dispatch(startSetExpenses()).then(() => {
-		const action = store.getActions();
-		expect(action[0]).toEqual({
+		const actions = store.getActions();
+		expect(actions[0]).toEqual({
 			type: 'SET_EXPENSES',
 			expenses
 		});
